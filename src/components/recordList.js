@@ -22,13 +22,19 @@ const Record = (props) => (
 export default function RecordList() {
   const [records, setRecords] = useState([]);
 
+  // Development mode
+  const serverUrlAPI = 'http://localhost:5000/';
+
+  // Production mode
+  // const serverUrlAPI = 'https://bank-server-lbi6.onrender.com/';
+
+  // Data Base name
+  const dbName = 'record';
+
   // This method fetches the records from the database.
   useEffect(() => {
     async function getRecords() {
-      // Development mode
-      // const response = await fetch(`http://localhost:5000/record/`);
-      // Production mode
-      const response = await fetch(`https://bank-server-lbi6.onrender.com/record/`);
+      const response = await fetch(serverUrlAPI + dbName );
 
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
@@ -47,7 +53,7 @@ export default function RecordList() {
 
   // This method will delete a record
   async function deleteRecord(id) {
-    await fetch(`http://localhost:5000/${id}`, {
+    await fetch(`${serverUrlAPI}${id}`, {
       method: "DELETE"
     });
 
