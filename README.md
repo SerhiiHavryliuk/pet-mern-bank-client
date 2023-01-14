@@ -1,4 +1,19 @@
-# Getting Started with Create React App
+# Pet project BankApp (Frontend)
+## Docs mern-stack-example
+Mern Stack code for the [Mern Tutorial](https://www.mongodb.com/languages/mern-stack-tutorial)
+
+[![CI](https://github.com/mongodb-developer/mern-stack-example/actions/workflows/main.yaml/badge.svg)](https://github.com/mongodb-developer/mern-stack-example/actions/workflows/main.yaml)
+
+[YouTube video - MERN Stack Beginners Tutorial](https://www.youtube.com/watch?v=ET2m37pABuQ&list=PLpPqplz6dKxUYV3x_dqyNuPW0JAut9w3L&ab_channel=PedroTech)
+## How To Run
+
+Start Web server
+```
+cd mern/client
+npm install
+npm start
+```
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
