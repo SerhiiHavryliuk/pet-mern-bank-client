@@ -28,7 +28,7 @@ export default function RecordList() {
       // Development mode
       // const response = await fetch(`http://localhost:5000/record/`);
       // Production mode
-      const response = await fetch(`https://bank-server-lbi6.onrender.com/`);
+      const response = await fetch(`https://bank-server-lbi6.onrender.com/record/`);
 
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
