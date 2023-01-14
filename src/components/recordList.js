@@ -25,7 +25,10 @@ export default function RecordList() {
   // This method fetches the records from the database.
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(`http://localhost:5000/record/`);
+      // Development mode
+      // const response = await fetch(`http://localhost:5000/record/`);
+      // Production mode
+      const response = await fetch(`https://bank-server-lbi6.onrender.com/`);
 
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
