@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Record = (props) => (
+const Bank = (props) => (
   <tr>
-    <td>{props.record.name}</td>
-    <td>{props.record.position}</td>
-    <td>{props.record.level}</td>
+    <td>{props.bank.name}</td>
+    <td>{props.bank.position}</td>
+    <td>{props.bank.level}</td>
     <td>
-      <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
+      <Link className="btn btn-link" to={`/edit/${props.bank._id}`}>Edit</Link> |
       <button className="btn btn-link"
         onClick={() => {
-          props.deleteRecord(props.record._id);
+          props.deleteBank(props.bank._id);
         }}
       >
         Delete
@@ -19,8 +19,8 @@ const Record = (props) => (
   </tr>
 );
 
-export default function RecordList() {
-  const [records, setRecords] = useState([]);
+export default function BanksList() {
+  const [banks, setBanks] = useState([]);
 
   // Development mode
   const serverUrlAPI = 'http://localhost:5000/';
@@ -33,7 +33,7 @@ export default function RecordList() {
 
   // This method fetches the records from the database.
   useEffect(() => {
-    async function getRecords() {
+    async function getBanks() {
       const response = await fetch(serverUrlAPI + dbName );
 
       if (!response.ok) {
@@ -42,33 +42,33 @@ export default function RecordList() {
         return;
       }
 
-      const records = await response.json();
-      setRecords(records);
+      const banks = await response.json();
+      setBanks(banks);
     }
 
-    getRecords();
+    getBanks();
 
     return; 
-  }, [records.length]);
+  }, [banks.length]);
 
   // This method will delete a record
-  async function deleteRecord(id) {
+  async function deleteBank(id) {
     await fetch(`${serverUrlAPI}${id}`, {
       method: "DELETE"
     });
 
-    const newRecords = records.filter((el) => el._id !== id);
-    setRecords(newRecords);
+    const newBank = banks.filter((el) => el._id !== id);
+    setBanks(newBank);
   }
 
   // This method will map out the records on the table
-  function recordList() {
-    return records.map((record) => {
+  function banksList() {
+    return banks.map((bank) => {
       return (
-        <Record
-          record={record}
-          deleteRecord={() => deleteRecord(record._id)}
-          key={record._id}
+        <Bank
+          bank={bank}
+          deleteBank={() => deleteBank(bank._id)}
+          key={bank._id}
         />
       );
     });
@@ -77,7 +77,7 @@ export default function RecordList() {
   // This following section will display the table with the records of individuals.
   return (
     <div>
-      <h3>Record List</h3>
+      <h3>Banks List</h3>
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
@@ -87,8 +87,23 @@ export default function RecordList() {
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>{recordList()}</tbody>
+        <tbody>{banksList()}</tbody>
       </table>
+
+      <table className="table table-striped" style={{ marginTop: 20 }}>
+        <thead>
+        <tr>
+          <th>Назва</th>
+          <th>Процент %</th>
+          <th>Макс сума кредиту</th>
+          <th>Перший внесок</th>
+          <th>Термін кредиту</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>{banksList()}</tbody>
+      </table>
+
     </div>
   );
 }

@@ -20,8 +20,8 @@ https://bank-server-lbi6.onrender.com/
 Start Web server
 ```
 cd mern/client
-npm install
-npm start
+yarn install
+yarn start
 ```
 
 
