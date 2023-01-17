@@ -4,9 +4,10 @@ import { useParams, useNavigate } from "react-router";
 export default function Edit() {
   const [form, setForm] = useState({
     name: "",
-    position: "",
-    level: "",
-    records: [],
+    interest_rate: "",
+    max_credit: "",
+    min_payment: "",
+    term_credit: "",
   });
   const params = useParams();
   const navigate = useNavigate();
@@ -48,9 +49,12 @@ export default function Edit() {
     e.preventDefault();
     const editedPerson = {
       name: form.name,
-      position: form.position,
-      level: form.level,
+      interest_rate: form.interest_rate,
+      max_credit: form.max_credit,
+      min_payment: form.min_payment,
+      term_credit: form.term_credit,
     };
+    console.log(editedPerson);
 
     // This will send a post request to update the data in the database.
     await fetch(`http://localhost:5000/update/${params.id}`, {
@@ -69,64 +73,95 @@ export default function Edit() {
     <div>
       <h3>Update Record</h3>
       <form onSubmit={onSubmit}>
+        {/* 1 Назва банку */}
         <div className="form-group">
-          <label htmlFor="name">Name: </label>
+          <label htmlFor="name">Назва банку</label>
           <input
-            type="text"
-            className="form-control"
-            id="name"
-            value={form.name}
-            onChange={(e) => updateForm({ name: e.target.value })}
+              type="text"
+              className="form-control"
+              id="name"
+              value={form.name}
+              onChange={(e) => updateForm({ name: e.target.value })}
           />
         </div>
+
+        {/* 2 Макс сума кредиту */}
         <div className="form-group">
-          <label htmlFor="position">Position: </label>
-          <input
-            type="text"
-            className="form-control"
-            id="position"
-            value={form.position}
-            onChange={(e) => updateForm({ position: e.target.value })}
-          />
-        </div>
-        <div className="form-group">
+          <p> Процентна ставка %</p>
           <div className="form-check form-check-inline">
             <input
-              className="form-check-input"
-              type="radio"
-              name="positionOptions"
-              id="positionIntern"
-              value="Intern"
-              checked={form.level === "Intern"}
-              onChange={(e) => updateForm({ level: e.target.value })}
+                className="form-check-input"
+                type="radio"
+                name="positionOptions"
+                id="positionIntern"
+                value="10"
+                checked={form.interest_rate === "10"}
+                onChange={(e) => updateForm({ interest_rate: e.target.value })}
             />
-            <label htmlFor="positionIntern" className="form-check-label">Intern</label>
+            <label htmlFor="positionIntern" className="form-check-label">10</label>
           </div>
           <div className="form-check form-check-inline">
             <input
-              className="form-check-input"
-              type="radio"
-              name="positionOptions"
-              id="positionJunior"
-              value="Junior"
-              checked={form.level === "Junior"}
-              onChange={(e) => updateForm({ level: e.target.value })}
+                className="form-check-input"
+                type="radio"
+                name="positionOptions"
+                id="positionJunior"
+                value="20"
+                checked={form.interest_rate === "20"}
+                onChange={(e) => updateForm({ interest_rate: e.target.value })}
             />
-            <label htmlFor="positionJunior" className="form-check-label">Junior</label>
+            <label htmlFor="positionJunior" className="form-check-label">20</label>
           </div>
           <div className="form-check form-check-inline">
             <input
-              className="form-check-input"
-              type="radio"
-              name="positionOptions"
-              id="positionSenior"
-              value="Senior"
-              checked={form.level === "Senior"}
-              onChange={(e) => updateForm({ level: e.target.value })}
+                className="form-check-input"
+                type="radio"
+                name="positionOptions"
+                id="positionSenior"
+                value="30"
+                checked={form.interest_rate === "30"}
+                onChange={(e) => updateForm({ interest_rate: e.target.value })}
             />
-            <label htmlFor="positionSenior" className="form-check-label">Senior</label>
+            <label htmlFor="positionSenior" className="form-check-label">30</label>
+          </div>
         </div>
+
+        {/* 3 Процент % */}
+        <div className="form-group">
+          <label htmlFor="max_credit">Макс сума кредиту</label>
+          <input
+              type="text"
+              className="form-control"
+              id="max_credit"
+              value={form.max_credit}
+              onChange={(e) => updateForm({ max_credit: e.target.value })}
+          />
         </div>
+
+        {/* 4 Перший внесок */}
+        <div className="form-group">
+          <label htmlFor="min_payment">Перший внесок</label>
+          <input
+              type="text"
+              className="form-control"
+              id="min_payment"
+              value={form.min_payment}
+              onChange={(e) => updateForm({ min_payment: e.target.value })}
+          />
+        </div>
+
+        {/* 5 Термін кредиту */}
+        <div className="form-group">
+          <label htmlFor="term_credit">Термін дії кредиту</label>
+          <input
+              type="text"
+              className="form-control"
+              id="term_credit"
+              value={form.term_credit}
+              onChange={(e) => updateForm({ term_credit: e.target.value })}
+          />
+        </div>
+
         <br />
 
         <div className="form-group">

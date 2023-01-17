@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 const Bank = (props) => (
   <tr>
     <td>{props.bank.name}</td>
-    <td>{props.bank.position}</td>
-    <td>{props.bank.level}</td>
+    <td>{props.bank.interest_rate}</td>
+    <td>{props.bank.max_credit}</td>
+    <td>{props.bank.min_payment}</td>
+    <td>{props.bank.term_credit}</td>
     <td>
       <Link className="btn btn-link" to={`/edit/${props.bank._id}`}>Edit</Link> |
       <button className="btn btn-link"
@@ -77,18 +79,8 @@ export default function BanksList() {
   // This following section will display the table with the records of individuals.
   return (
     <div>
+
       <h3>Banks List</h3>
-      <table className="table table-striped" style={{ marginTop: 20 }}>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Level</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>{banksList()}</tbody>
-      </table>
 
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
