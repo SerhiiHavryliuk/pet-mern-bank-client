@@ -1,4 +1,10 @@
 # Pet project BankApp (Frontend)
+![Alt text](./public/EliftechBank.png?raw=true "Title")
+
+
+## Deploy
+[https://bank-client.onrender.com/](https://bank-client.onrender.com/)
+
 ## Docs mern-stack-example
 Mern Stack code for the [Mern Tutorial](https://www.mongodb.com/languages/mern-stack-tutorial)
 
@@ -6,10 +12,6 @@ Mern Stack code for the [Mern Tutorial](https://www.mongodb.com/languages/mern-s
 
 [YouTube video - MERN Stack Beginners Tutorial](https://www.youtube.com/watch?v=ET2m37pABuQ&list=PLpPqplz6dKxUYV3x_dqyNuPW0JAut9w3L&ab_channel=PedroTech)
 
-
-## Deploy
-
-[https://bank-client.onrender.com/](https://bank-client.onrender.com/)
 
 #### Backend server url
 ```
