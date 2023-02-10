@@ -1,42 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import {dbName} from "../settings/settings" // Data Base name
 
-const Bank = (props) => (
-  <tr>
-    <td>{props.bank.name}</td>
-    <td>{props.bank.interest_rate}</td>
-    <td>{props.bank.max_credit}</td>
-    <td>{props.bank.min_payment}</td>
-    <td>{props.bank.term_credit}</td>
-    <td>
-      <Link className="btn btn-link" to={`/edit/${props.bank._id}`}>Edit</Link> |
-      <button className="btn btn-link"
-        onClick={() => {
-          props.deleteBank(props.bank._id);
-        }}
-      >
-        Delete
-      </button>
-    </td>
-  </tr>
-);
+import { serverUrlAPI } from '../settings/settings';
+import Bank from "./Bank";
 
 export default function BanksList() {
   const [banks, setBanks] = useState([]);
 
-  // Development mode
-  const serverUrlAPI = 'http://localhost:5000/';
-
-  // Production mode
-  // const serverUrlAPI = 'https://bank-server-lbi6.onrender.com/';
-
-  // Data Base name
-  const dbName = 'record';
-
   // This method fetches the records from the database.
   useEffect(() => {
     async function getBanks() {
-      const response = await fetch(serverUrlAPI + dbName );
+      const response = await fetch(serverUrlAPI + "/" + dbName );
 
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
@@ -55,7 +29,7 @@ export default function BanksList() {
 
   // This method will delete a record
   async function deleteBank(id) {
-    await fetch(`${serverUrlAPI}${id}`, {
+    await fetch(`${serverUrlAPI}/${id}`, {
       method: "DELETE"
     });
 
@@ -90,7 +64,7 @@ export default function BanksList() {
           <th>Макс сума кредиту</th>
           <th>Перший внесок</th>
           <th>Термін кредиту</th>
-          <th>Actions</th>
+          <th>Дії</th>
         </tr>
         </thead>
         <tbody>{banksList()}</tbody>

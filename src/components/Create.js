@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { serverUrlAPI } from '../settings/settings';
+import {dbName} from "../settings/settings" // Data Base name
 
 export default function Create() {
   const [form, setForm] = useState({
@@ -25,7 +27,7 @@ export default function Create() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newPerson = { ...form };
 
-    await fetch("http://localhost:5000/record/add", {
+    await fetch(`${serverUrlAPI}/${dbName}/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -104,7 +106,7 @@ export default function Create() {
         <div className="form-group">
           <label htmlFor="max_credit">Макс сума кредиту</label>
           <input
-              type="text"
+              type="number"
               className="form-control"
               id="max_credit"
               value={form.max_credit}
@@ -116,7 +118,7 @@ export default function Create() {
         <div className="form-group">
           <label htmlFor="min_payment">Перший внесок</label>
           <input
-              type="text"
+              type="number"
               className="form-control"
               id="min_payment"
               value={form.min_payment}
@@ -128,7 +130,7 @@ export default function Create() {
         <div className="form-group">
           <label htmlFor="term_credit">Термін дії кредиту</label>
           <input
-              type="text"
+              type="number"
               className="form-control"
               id="term_credit"
               value={form.term_credit}
@@ -136,7 +138,7 @@ export default function Create() {
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group btnCalc">
           <input
             type="submit"
             value="Create bank"

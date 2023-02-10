@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
+import { serverUrlAPI } from '../settings/settings';
+import {dbName} from "../settings/settings" // Data Base name
 
 export default function Edit() {
   const [form, setForm] = useState({
@@ -15,7 +17,7 @@ export default function Edit() {
   useEffect(() => {
     async function fetchData() {
       const id = params.id.toString();
-      const response = await fetch(`http://localhost:5000/record/${params.id.toString()}`);
+      const response = await fetch(`${serverUrlAPI}/${dbName}/${params.id.toString()}`);
 
       if (!response.ok) {
         const message = `An error has occured: ${response.statusText}`;
@@ -23,14 +25,14 @@ export default function Edit() {
         return;
       }
 
-      const record = await response.json();
-      if (!record) {
-        window.alert(`Record with id ${id} not found`);
+      const bank = await response.json();
+      if (!bank) {
+        window.alert(`Bank with id ${id} not found`);
         navigate("/");
         return;
       }
 
-      setForm(record);
+      setForm(bank);
     }
 
     fetchData();
@@ -54,10 +56,9 @@ export default function Edit() {
       min_payment: form.min_payment,
       term_credit: form.term_credit,
     };
-    console.log(editedPerson);
 
     // This will send a post request to update the data in the database.
-    await fetch(`http://localhost:5000/update/${params.id}`, {
+    await fetch(`${serverUrlAPI}/update/${params.id}`, {
       method: "POST",
       body: JSON.stringify(editedPerson),
       headers: {
@@ -71,7 +72,7 @@ export default function Edit() {
   // This following section will display the form that takes input from the user to update the data.
   return (
     <div>
-      <h3>Update Record</h3>
+      <h3>Edit Bank</h3>
       <form onSubmit={onSubmit}>
         {/* 1 Назва банку */}
         <div className="form-group">
@@ -130,7 +131,7 @@ export default function Edit() {
         <div className="form-group">
           <label htmlFor="max_credit">Макс сума кредиту</label>
           <input
-              type="text"
+              type="number"
               className="form-control"
               id="max_credit"
               value={form.max_credit}
@@ -142,7 +143,7 @@ export default function Edit() {
         <div className="form-group">
           <label htmlFor="min_payment">Перший внесок</label>
           <input
-              type="text"
+              type="number"
               className="form-control"
               id="min_payment"
               value={form.min_payment}
@@ -154,7 +155,7 @@ export default function Edit() {
         <div className="form-group">
           <label htmlFor="term_credit">Термін дії кредиту</label>
           <input
-              type="text"
+              type="number"
               className="form-control"
               id="term_credit"
               value={form.term_credit}
@@ -167,7 +168,7 @@ export default function Edit() {
         <div className="form-group">
           <input
             type="submit"
-            value="Update Record"
+            value="Edit Bank"
             className="btn btn-primary"
           />
         </div>
