@@ -8,11 +8,16 @@ Mern Stack code for the [Mern Tutorial](https://www.mongodb.com/languages/mern-s
 
 
 ## Deploy
-[Deploy project - Render.com](https://render.com/)
+
+[https://bank-client.onrender.com/](https://bank-client.onrender.com/)
 
 #### Backend server url
 ```
 https://bank-server-lbi6.onrender.com/
+```
+for local develop change serverUrlAPI in file settings/settings.js
+```
+export const serverUrlAPI = 'http://localhost:5000';
 ```
 
 ## How To Run
