@@ -1,0 +1,22 @@
+.calcSelect{
+    max-width: 300px;
+    width: 100%;
+}
+
+.form-group{
+    margin-bottom: 20px;
+}
+
+.btnCalc{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.btnCalc span{
+    margin-right: 60px;
+}
+
+td{
+    line-height: 38px;
+}

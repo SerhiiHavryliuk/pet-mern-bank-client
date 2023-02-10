@@ -4,10 +4,12 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 // We import all the components we need in our app
-import Navbar from "./components/navbar";
-import RecordList from "./components/recordList";
-import Edit from "./components/edit";
-import Create from "./components/create";
+import Navbar from "./components/Navbar";
+import BanksList from "./components/BanksList";
+import Edit from "./components/Edit";
+import Create from "./components/Create";
+import Calculator from "./components/Calculator";
+
 
 const App = () => {
   return (
@@ -15,8 +17,9 @@ const App = () => {
       <Navbar />
       <div style={{ margin: 20 }}>
       <Routes>
-        <Route exact path="/" element={<RecordList />} />
+        <Route exact path="/" element={<BanksList />} />
         <Route path="/edit/:id" element={<Edit />} />
+        <Route path="/calculator" element={<Calculator />} />
         <Route path="/create" element={<Create />} />
       </Routes>
       </div>
